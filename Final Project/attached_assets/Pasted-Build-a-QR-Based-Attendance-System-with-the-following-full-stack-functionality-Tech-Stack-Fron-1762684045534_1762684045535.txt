@@ -1,0 +1,118 @@
+Build a QR-Based Attendance System with the following full-stack functionality:
+
+🧩 Tech Stack
+
+Frontend: React (with react-qr-reader)
+
+Backend: Spring Boot (Java)
+
+Database: MongoDB
+
+Authentication: JWT
+
+🎯 Core Functionalities
+
+User Roles:
+
+Admin: create/manage sessions, view attendance logs, export data (CSV/PDF)
+
+User: scan QR code to mark attendance (check-in/check-out)
+
+QR Code Handling:
+
+Backend generates QR codes using ZXing for each session.
+
+QR payload format:
+SESSION_<UUID>;TYPE=<checkin|checkout>;EXP=<timestamp>
+
+Each QR has a short expiry (e.g., 5 mins).
+
+Frontend displays this QR on the admin dashboard.
+
+Frontend users scan using react-qr-reader.
+
+Attendance Flow:
+
+On scan, frontend extracts payload and sends it with JWT token to backend:
+
+POST /api/attendance/check
+{
+  "sessionId": "<uuid>",
+  "type": "checkin" or "checkout",
+  "qrData": "<payload>"
+}
+
+
+Backend validates:
+
+Token authenticity (JWT)
+
+Session validity (active + not expired)
+
+Prevent duplicate check-ins/outs
+
+If valid:
+
+Log entry in attendance_logs:
+
+{
+  userId,
+  sessionId,
+  checkInTime / checkOutTime,
+  userAgent,
+  ipAddress
+}
+
+
+Frontend Components
+
+Login.js / Register.js (JWT-based auth)
+
+QRScanner.js (camera access, scanning, response message)
+
+AdminDashboard.js
+
+Create sessions
+
+Generate/display QR code
+
+Filter/view attendance logs
+
+Export CSV/PDF
+
+Backend API Structure
+
+/api/auth/login, /register
+/api/users
+/api/sessions
+/api/attendance/check
+/api/attendance/logs
+
+
+MongoDB Collections
+
+users: { employeeId, name, email, password, role }
+
+sessions: { sessionName, qrCodeData, type, isActive, createdAt }
+
+attendance_logs: { userId, sessionId, checkInTime, checkOutTime, ipAddress }
+
+Security & Deployment
+
+JWT protection on all attendance/session routes.
+
+QR expiry validation.
+
+Dockerized setup for frontend, backend, and MongoDB using docker-compose.
+
+✅ Goal
+
+A working QR Attendance Web App where:
+
+Admin generates dynamic QR for sessions.
+
+Users scan to check-in and check-out.
+
+Backend validates and stores logs.
+
+Admin can view/export attendance data.
