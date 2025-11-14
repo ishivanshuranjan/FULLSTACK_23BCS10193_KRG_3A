@@ -1,0 +1,183 @@
+/* Reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(-45deg, #f6d365, #fda085, #84fab0, #8fd3f4);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  background-attachment: fixed;
+  color: #000;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* Animated background keyframes */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Header */
+header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.8em;
+  color: #e67700;
+  margin-bottom: 10px;
+}
+
+p.subtitle {
+  font-size: 1.3em;
+  color: #000;
+}
+
+/* Navigation */
+nav {
+  margin: 20px 0;
+  padding: 10px 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* Sections */
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: #000;
+  transition: transform 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-3px);
+}
+
+h2 {
+  color: #000;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: 25px;
+  color: #000;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  color: #000;
+}
+
+th,
+td {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: #e67700;
+}
+
+a:hover {
+  color: #c45f00;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #000;
+  font-size: 0.9em;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Icons spacing */
+h2 i,
+nav i,
+#contact i {
+  margin-right: 8px;
+  color: #000;
+}
+
+/* Responsive enhancements */
+@media (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  th,
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  th::before,
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+    color: #000;
+  }
+}
